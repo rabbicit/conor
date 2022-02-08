@@ -162,34 +162,34 @@
             <p>We believe artists should have options. Stick with our 90/10 royalty deal for no upfront fee or choose Top Wave Music Select and keep 100% of the money you make.</p>
             <div class="pricing-packages">
                 <div class="another-row">
-                    <div class="single-pricing" style="background-image: url({{asset('images/Texture_13.jpg')}})">
+                    <div class="single-pricing">
                         <a href="#"></a>
                         <div class="pricing-box">
                             <h4>Single</h4>
                             <p>1-2 tracks</p>
-                            <h1 style="background-image: url({{asset('images/Texture_13.jpg')}})">9.99</h1>
+                            <h1>9.99</h1>
                             <h6>USD/year</h6>
                         </div>
                     </div>
                 </div>
                 <div class="another-row">
-                    <div class="single-pricing" style="background-image: url({{asset('images/Texture_18.jpg')}})">
+                    <div class="single-pricing">
                         <a href="#"></a>
                         <div class="pricing-box">
                             <h4>Enterprise</h4>
                             <p>3-6 tracks</p>
-                            <h1 style="background-image: url({{asset('images/Texture_18.jpg')}})">19.99</h1>
+                            <h1>19.99</h1>
                             <h6>USD/year</h6>
                         </div>
                     </div>
                 </div>
                 <div class="another-row">
-                    <div class="single-pricing" style="background-image: url({{asset('images/Texture_03.jpg')}})">
+                    <div class="single-pricing">
                         <a href="#"></a>
                         <div class="pricing-box">
                             <h4>Premium</h4>
                             <p>7-25 tracks</p>
-                            <h1 style="background-image: url({{asset('images/Texture_03.jpg')}})">39.99</h1>
+                            <h1>39.99</h1>
                             <h6>USD/year</h6>
                         </div>
                     </div>

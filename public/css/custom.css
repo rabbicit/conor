@@ -488,6 +488,7 @@ header.overflow.fixed {
 	padding: 60px 50px;
 	background-size: cover;
 	background-position: center;
+  background-color: #4bbcf7;
 }
 .single-pricing:before {
   content: '';
@@ -517,12 +518,13 @@ header.overflow.fixed {
   margin-bottom: 20px;
 }
 .pricing-box h1 {
-  font-size: 60px;
-  line-height: 70px;
-  font-weight: bold;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
+	font-size: 60px;
+	line-height: 70px;
+	font-weight: bold;
+	/* -webkit-background-clip: text; */
+	/* -webkit-text-fill-color: transparent; */
+	margin-bottom: 20px;
+	color: #4bbcf7;
 }
 .pricing-box h6 {
   color: #000;
