@@ -72,7 +72,7 @@
 
             <div class="form-group">
               <label class="title small" for="name">Phone:</label>
-              <input type="text" placeholder="Phone number" name="phone" id="phone" class="text name required" wire:model="phone">
+              <input type="text" placeholder="Phone number" name="phone" id="phone" class="text name" wire:model="phone">
               @error('phone') <p class="text-danger">{{$message}}</p>@enderror
             </div>
             
@@ -96,7 +96,6 @@
             <p>1000 NE Miami Gardens Suite #100</p>
             <p>Miami Beach, FL, 3343</p>
             <ul class="contact">
-              <li><i class="fa fa-phone"></i> 1.000.000.0000</li>
               <li><i class="fa fa-envelope"></i> support@topwavemusic.com</li>
             </ul>
             <h4 class="title small">Get socialized with us</h4>

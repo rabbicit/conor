@@ -16,7 +16,6 @@ class ContactPageComponent extends Component
         $this->validateOnly($fields, [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
             'comment' => 'required'
         ]);
     }
@@ -24,7 +23,6 @@ class ContactPageComponent extends Component
         $this->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
             'comment' => 'required'
         ]);
 

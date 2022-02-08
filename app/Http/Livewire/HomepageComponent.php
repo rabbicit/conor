@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Product;
 use Livewire\Component;
 
 class HomepageComponent extends Component
 {
     public function render()
     {
-        return view('livewire.homepage-component')->layout('layouts.base');
+        $products = Product::take(10)->get(); 
+        return view('livewire.homepage-component', ['products' => $products])->layout('layouts.base');
     }
 }

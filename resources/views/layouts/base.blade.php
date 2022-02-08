@@ -51,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand" href="#anchor00"><img src="{{ asset('images/logo.png') }}" alt="logo"></a>
+                <a class="navbar-brand" href="{{route('index')}}"><img src="{{ asset('images/logo.png') }}" alt="logo"></a>
             </div>
 
             <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-muziq">
@@ -94,7 +94,6 @@
                         <p>1000 NE Miami Gardens Suite #100</p>
                         <p>Miami Beach, FL, 3343</p>
                         <ul class="contact">
-                            <li><i class="fa fa-phone"></i> 1.000.000.0000</li>
                             <li><i class="fa fa-envelope"></i> support@topwavemusic.com</li>
                         </ul>
                         <h4 class="title small">Get socialized with us</h4>
@@ -112,7 +111,7 @@
                         <h4 class="title small">Useful Links</h4>
                         <ul class="listings">
                             <li><a href="#">Musics</a></li>
-                            <li><a href="#">Sell with us</a></li>
+                            <li><a href="#">Distribute your music</a></li>
                             <li><a href="#">How it works</a></li>
                             <li><a href="#">Contact Us</a></li>
                         </ul>
