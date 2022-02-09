@@ -4,6 +4,7 @@ use App\Http\Livewire\AboutPageComponent;
 use App\Http\Livewire\ContactPageComponent;
 use App\Http\Livewire\HomepageComponent;
 use App\Http\Livewire\HowitWorksPageComponent;
+use App\Http\Livewire\Members\MemberSetupComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,7 @@ Route::get('/faqs', HowitWorksPageComponent::class)->name('faqs');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    Route::get('/start', MemberSetupComponent::class)->name('start');
+});
