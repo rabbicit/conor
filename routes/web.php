@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\AboutPageComponent;
+use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\ContactPageComponent;
 use App\Http\Livewire\HomepageComponent;
 use App\Http\Livewire\HowitWorksPageComponent;
@@ -34,4 +35,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/start', MemberSetupComponent::class)->name('start');
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
 });

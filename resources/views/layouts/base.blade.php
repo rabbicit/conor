@@ -141,3 +141,4 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     @livewireScripts
 </body>
+</html>
