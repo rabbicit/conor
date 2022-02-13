@@ -65,6 +65,10 @@
 
                             @else 
                             <li><a href="{{route('dashboard')}}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            <form action="{{route('logout')}}" method="POST" id="logout-form">
+                                @csrf
+                            </form>
                             @endif
                         @else 
                             <li><a href="{{route('login')}}">Login</a></li>

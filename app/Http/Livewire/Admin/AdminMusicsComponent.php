@@ -8,6 +8,6 @@ class AdminMusicsComponent extends Component
 {
     public function render()
     {
-        return view('livewire.admin.admin-musics-component');
+        return view('livewire.admin.admin-musics-component')->layout('layouts.dashboard');
     }
 }

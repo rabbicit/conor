@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\Members;
 
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Stripe\Customer;
+use Stripe\Stripe;
 
 class MemberSetupComponent extends Component
 {
@@ -16,6 +19,11 @@ class MemberSetupComponent extends Component
     public $city;
     public $zipcode;
     public $package;
+    public $stripeToken;
+    public $paymentMethod;
+    public $stripe_token;
+
+    protected $listeners = ['getStripeToken'];
     
     public function getCountries(){
         $curl = curl_init();
@@ -103,10 +111,10 @@ class MemberSetupComponent extends Component
     public function secondStepSubmit(){
         $validatedData = $this->validate([
             'phone' => 'required',
-            'address' => 'required',
-            'country' => 'required',
-            'state' => 'required',
-            'city' => 'required',
+            // 'address' => 'required',
+            // 'country' => 'required',
+            // 'state' => 'required',
+            // 'city' => 'required',
             'zipcode' => 'required',
         ]);
   
@@ -119,15 +127,37 @@ class MemberSetupComponent extends Component
         ]);
   
         $this->currentStep = 4;
+        $this->dispatchBrowserEvent('stripe-update');
     }
 
     public function submitForm(){
         $validatedData = $this->validate([
             'package' => 'required',
         ]);
-
         $user = Auth::user();
-        $token = '';
+        $token = $this->stripe_token;
+        $paymentMethod = $this->paymentMethod;
+        // var_dump($paymentMethod);
+
+        try{
+            Stripe::setApiKey(env('STRIPE_KEY'));
+            if(is_null($user->stripe_id)){
+                $stripeCustomer = $user->createAsStripeCustomer();
+            }
+
+            Customer::createSource(
+                $user->stripe_id,
+                ['source' => $token]
+            );
+
+            $user->newSubscription('test',$this->package)
+            ->create($paymentMethod, [
+            'email' => $user->email,
+        ]);
+
+        } catch (Exception $e) {
+            // return back()->with('success',$e->getMessage());
+        }
   
         $this->clearForm();
   
@@ -144,6 +174,13 @@ class MemberSetupComponent extends Component
         $this->price = '';
         $this->detail = '';
         $this->status = 1;
+    }
+
+    
+
+    public function getStripeToken($stripeToken){
+        $this->stripe_token = $stripeToken;
+        $this->submitForm();
     }
 
     public function render()

@@ -11,6 +11,8 @@
         </div>
       </div>
     <div class="container">
+        <form class="form-horizontal" wire:submit.prevent="submitForm" method="POST" id="register_form" enctype="multipart/form-data">
+            @csrf
         <div class="total-steps">
             <div class="single-step {{ $currentStep != 1 ? 'display-none' : '' }}" id="step-1">
                 <div class="step-title">
@@ -58,7 +60,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <select name="country" class="countries order-alpha include-US presel-US" id="countryId" required wire:model="country" wire:change="changeCountry">
+                                <select name="country" class="countries order-alpha include-US presel-US" id="countryId" wire:model="country">
                                     <option value="">Select Country</option>
                                     @foreach($countries as $key=>$val)
                                         <option value="{{$key}}">{{$val}}</option>
@@ -69,8 +71,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <select name="state" class="states order-alpha" id="stateId" required wire:model="state" wire:change="changeState">
-                                    <option value="">Select State</option>
+                                <select name="state" class="states order-alpha" id="stateId" wire:model="state" >
+                                    <option value="st">Select State</option>
                                     @foreach($states as $key=>$val)
                                         <option value="{{$key}}">{{$val}}</option>
                                     @endforeach
@@ -80,8 +82,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <select name="city" class="cities order-alpha" id="cityId" required wire:model="city">
-                                    <option value="">Select City</option>
+                                <select name="city" class="cities order-alpha" id="cityId" wire:model="city">
+                                    <option value="s">Select City</option>
                                     @foreach($cities as $key=>$val)
                                         <option value="{{$key}}">{{$val}}</option>
                                     @endforeach
@@ -91,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <input type="number" name="zipcode" placeholder="Zip Code" required wire:model="zipcode">
+                                <input type="number" name="zipcode" placeholder="Zip Code" wire:model="zipcode">
                                 <div class="error-code">
                                     @error('zipcode') <p class="text-danger">{{ $message }}</p> @enderror
                                 </div>
@@ -174,18 +176,18 @@
                     </div>
                 </div>
                 <div class="step-next">
-                    <button class="btn btn-primary nextBtn btn-lg pull-right" wire:click="submitForm" type="button">Pay Now</button>
+                    <button class="btn btn-primary nextBtn btn-lg pull-right" id="submitbtn" type="button">Pay Now</button>
                 </div>
             </div>
         </div>
+        </form>
     </div>
-</div>
-@push('scripts')
     <script src="https://js.stripe.com/v3/"></script>
-    <script type="text/javascript">
-        // Create a Stripe client.
-        var stripe = Stripe('pk_test_K2a1hO6CSnZae6dfl1KTbzgv');
 
+
+    <script type="text/javascript">
+    // Create a Stripe client. 
+    var stripe = Stripe('pk_test_K2a1hO6CSnZae6dfl1KTbzgv');
         // Create an instance of Elements.
         var elements = stripe.elements();
 
@@ -208,7 +210,10 @@
         };
 
         // Create an instance of the card Element.
-        var card = elements.create('card', {style: style});
+        var card = elements.create('card');
+
+
+    window.addEventListener('stripe-update', event => {
 
         // Add an instance of the card Element into the `card-element` <div>.
         card.mount('#card-element');
@@ -222,19 +227,22 @@
                 displayError.textContent = '';
             }
         });
-
-        // Handle form submission.
-        function generateStripeToken() {
-            stripe.createToken(card).then(function (result) {
-                if (result.error) {
-                    // Inform the user if there was an error.
-                    var errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = result.error.message;
-                } else {
-                    // Send the token to your server.
-                    @this.set('stripe_token', result.token.id);
-                }
-            });
-        }
+    });
+    const cardButton = document.getElementById('submitbtn');
+    cardButton.addEventListener('click', async (e) =>  {
+        stripe.createToken(card).then(function (result) {
+            if (result.error) {
+                // Inform the user if there was an error.
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Send the token to your server.
+                @this.set('stripe_token', result.token.id);
+                Livewire.emit('getStripeToken', result.token.id);
+                @this.call('getStripeToken', result.token.id);
+                console.log(result.token.id);
+            }
+        });
+    });
     </script>
-@endpush
+</div>
