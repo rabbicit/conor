@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 09, 2022 at 08:40 AM
+-- Generation Time: Feb 13, 2022 at 05:49 AM
 -- Server version: 8.0.27
 -- PHP Version: 8.0.15
 
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `conor`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `albums`
+--
+
+CREATE TABLE `albums` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -121,7 +137,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2020_05_21_300000_create_team_invitations_table', 4),
 (16, '2022_02_07_201804_add_extra_to_team_table', 5),
 (17, '2022_02_08_142554_update_users_table', 6),
-(18, '2022_02_08_143415_update_user_table', 7);
+(18, '2022_02_08_143415_update_user_table', 7),
+(19, '2022_02_12_175918_create_tracks_table', 8),
+(20, '2022_02_12_180551_create_albums_table', 8),
+(21, '2022_02_12_181228_update_albums_table', 9);
 
 -- --------------------------------------------------------
 
@@ -211,7 +230,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('KUvM3GalknNXlafxSEfTH4Dws0yvCnyskx6YACMG', 2, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:96.0) Gecko/20100101 Firefox/96.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUG95ZTJsUkFiclV4d2xCOWpLeUpITVlSUm05bG1sRERQVXVBaDAyUiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9zdGFydCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRaeVlyZU15d250NU5RZHcudEhkWTBPbTIxUGxrNkJnLi5ZWWd4REZzUElUazdZTWU1a3VkTyI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkWnlZcmVNeXdudDVOUWR3LnRIZFkwT20yMVBsazZCZy4uWVlneERGc1BJVGs3WU1lNWt1ZE8iO30=', 1644348091);
+('EVqdIoJQYOyCUWZl1Ha84r9yi6cn0qu6RO7aoEVn', 5, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:97.0) Gecko/20100101 Firefox/97.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNnp2Qnh0Q1E0U0FUcVZXZjhtb1gzQmVtZ2ZYZHRBZk96TVVoRTZkbiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9zdGFydCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRRWWJvYkZTNnQvQ1pNRXloRGdhQVB1L1NqbE8xTVZOWVpneUUuRm9wMWljMElMY3Fvd2t4QyI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkUVlib2JGUzZ0L0NaTUV5aERnYUFQdS9TamxPMU1WTllaZ3lFLkZvcDFpYzBJTGNxb3dreEMiO30=', 1644701471);
 
 -- --------------------------------------------------------
 
@@ -253,6 +272,30 @@ CREATE TABLE `subscription_items` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tracks`
+--
+
+CREATE TABLE `tracks` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `songwriters` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `explicit_content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` decimal(8,2) NOT NULL,
+  `producer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `featured_artist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instrumental` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `album_id` bigint UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -286,12 +329,23 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `created_at`, `updated_at`, `stripe_id`, `pm_type`, `pm_last_four`, `trial_ends_at`, `role`, `address`, `city`, `state`, `zip`, `country`, `phone`, `profile_pic`) VALUES
-(1, 'Test Name', 'testuser@gmail.com', NULL, '$2y$10$jpsMT/8HYunltNoo3e7yUeeanZtSHPN0tKD7Jr79csm9hoIO6shN6', NULL, NULL, NULL, '2022-01-23 01:47:25', '2022-01-23 01:47:25', NULL, NULL, NULL, NULL, 'member', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'User Name', 'useremail@gmail.com', NULL, '$2y$10$ZyYreMywnt5NQdw.tHdY0Om21Plk6Bg..YYgxDFsPITk7YMe5kudO', NULL, NULL, NULL, '2022-02-08 02:02:22', '2022-02-08 02:02:22', NULL, NULL, NULL, NULL, 'member', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(2, 'User Name', 'useremail@gmail.com', NULL, '$2y$10$ZyYreMywnt5NQdw.tHdY0Om21Plk6Bg..YYgxDFsPITk7YMe5kudO', NULL, NULL, NULL, '2022-02-08 02:02:22', '2022-02-08 02:02:22', NULL, NULL, NULL, NULL, 'member', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'Admin', 'adminuser@gmail.com', NULL, '$2y$10$.acZeWfnJP2W7oFpKVMg4uBH8Wgja3/t7S9TDm.prxM.yGmS7Ew1i', NULL, NULL, NULL, '2022-02-12 22:15:38', '2022-02-12 22:15:38', NULL, NULL, NULL, NULL, 'customer', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'memeber', 'memeem@gmail.com', NULL, '$2y$10$cyE6wnj1wsQbgYaaYkjcGeGgRi0.ExfF.NXiYs5zp7EULaam85Tne', NULL, NULL, NULL, '2022-02-12 23:51:56', '2022-02-12 23:51:56', NULL, NULL, NULL, NULL, 'customer', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'Frankie Young', 'useremailn@gmail.com', NULL, '$2y$10$QYbobFS6t/CZMEyhDgaAPu/SjlO1MVNYZgyE.Fop1ic0ILcqowkxC', NULL, NULL, NULL, '2022-02-12 23:55:47', '2022-02-13 00:23:54', 'cus_L8idc17UcXLYum', NULL, NULL, NULL, 'member', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `albums`
+--
+ALTER TABLE `albums`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `albums_name_unique` (`name`),
+  ADD UNIQUE KEY `albums_slug_unique` (`slug`),
+  ADD KEY `albums_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `categories`
@@ -367,6 +421,15 @@ ALTER TABLE `subscription_items`
   ADD UNIQUE KEY `subscription_items_stripe_id_unique` (`stripe_id`);
 
 --
+-- Indexes for table `tracks`
+--
+ALTER TABLE `tracks`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `tracks_slug_unique` (`slug`),
+  ADD KEY `tracks_user_id_foreign` (`user_id`),
+  ADD KEY `tracks_album_id_foreign` (`album_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -377,6 +440,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `albums`
+--
+ALTER TABLE `albums`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -400,7 +469,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -427,20 +496,39 @@ ALTER TABLE `subscription_items`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tracks`
+--
+ALTER TABLE `tracks`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `albums`
+--
+ALTER TABLE `albums`
+  ADD CONSTRAINT `albums_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tracks`
+--
+ALTER TABLE `tracks`
+  ADD CONSTRAINT `tracks_album_id_foreign` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `tracks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
