@@ -7,7 +7,11 @@ use App\Http\Livewire\Admin\AdminMembershipComponent;
 use App\Http\Livewire\ContactPageComponent;
 use App\Http\Livewire\HomepageComponent;
 use App\Http\Livewire\HowitWorksPageComponent;
+use App\Http\Livewire\Members\MemberDashboardComponent;
+use App\Http\Livewire\Members\MemberProfileComponent;
 use App\Http\Livewire\Members\MemberSetupComponent;
+use App\Http\Livewire\Members\MemberTracksComponent;
+use App\Http\Livewire\Members\MemberTrackUploadsComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,8 +39,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function(){
-    Route::get('/start', MemberSetupComponent::class)->name('start');
+Route::middleware(['auth:sanctum', 'verified', 'authmembers'])->group(function(){
+    Route::get('/member/start', MemberSetupComponent::class)->name('start');
+    Route::get('/member/dashboard', MemberDashboardComponent::class)->name('member.dashboard');
+    Route::get('/member/tracks', MemberTracksComponent::class)->name('member.tracks');
+    Route::get('/member/profile', MemberProfileComponent::class)->name('member.profile');
+    Route::get('/member/tracks/upload', MemberTrackUploadsComponent::class)->name('member.adtrack');
 });
 
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function(){

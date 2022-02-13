@@ -164,9 +164,11 @@
 
 
                     <div x-data x-on:generate-stripe-token.window="generateStripeToken()">
+
                         <label for="card">
                             Credit Card
                         </label>
+                        <input id="card-holder-name" type="text">
                         <div wire:ignore id="card-element">
                             <!-- A Stripe Element will be inserted here. -->
                         </div>
@@ -176,7 +178,7 @@
                     </div>
                 </div>
                 <div class="step-next">
-                    <button class="btn btn-primary nextBtn btn-lg pull-right" id="submitbtn" type="button">Pay Now</button>
+                    <button class="btn btn-primary nextBtn btn-lg pull-right" id="submitbtn" type="button" data-secret="{{env('STRIPE_SECRET')}}">Pay Now</button>
                 </div>
             </div>
         </div>
@@ -188,29 +190,29 @@
     <script type="text/javascript">
     // Create a Stripe client. 
     var stripe = Stripe('pk_test_K2a1hO6CSnZae6dfl1KTbzgv');
-        // Create an instance of Elements.
-        var elements = stripe.elements();
+    // Create an instance of Elements.
+    var elements = stripe.elements();
 
-        // Custom styling can be passed to options when creating an Element.
-        var style = {
-            base: {
-                color: '#32325d',
-                lineHeight: '24px',
-                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                fontSmoothing: 'antialiased',
-                fontSize: '16px',
-                '::placeholder': {
-                    color: '#aab7c4'
-                }
-            },
-            invalid: {
-                color: '#fa755a',
-                iconColor: '#fa755a'
+    // Custom styling can be passed to options when creating an Element.
+    var style = {
+        base: {
+            color: '#32325d',
+            lineHeight: '24px',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+                color: '#aab7c4'
             }
-        };
+        },
+        invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+        }
+    };
 
-        // Create an instance of the card Element.
-        var card = elements.create('card');
+    // Create an instance of the card Element.
+    var card = elements.create('card');
 
 
     window.addEventListener('stripe-update', event => {
@@ -229,7 +231,17 @@
         });
     });
     const cardButton = document.getElementById('submitbtn');
+    const cardHolderName = document.getElementById('card-holder-name');
+    const clientSecret = cardButton.dataset.secret;
+
     cardButton.addEventListener('click', async (e) =>  {
+        const { paymentMethod, error } = await stripe.createPaymentMethod(
+            'card', card, {
+                billing_details: { name: cardHolderName.value }
+            }
+            
+        );
+
         stripe.createToken(card).then(function (result) {
             if (result.error) {
                 // Inform the user if there was an error.
@@ -237,10 +249,11 @@
                 errorElement.textContent = result.error.message;
             } else {
                 // Send the token to your server.
-                @this.set('stripe_token', result.token.id);
-                Livewire.emit('getStripeToken', result.token.id);
-                @this.call('getStripeToken', result.token.id);
-                console.log(result.token.id);
+                // @this.call('setPayment', setupIntent.payment_method)
+                // @this.set('stripe_token', result.token.id);
+                Livewire.emit('getStripeToken', result.token.id, paymentMethod.id);
+                // @this.call('getStripeToken', result.token.id);
+                console.log(paymentMethod);
             }
         });
     });

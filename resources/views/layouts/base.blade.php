@@ -57,18 +57,30 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-muziq">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{route('index')}}">Home</a></li>
+                    <li><a href="{{route('about')}}">About Us</a></li>
+                    <li><a href="{{route('contact')}}">Contact</a></li>
+                    <li><a href="{{route('faqs')}}">FAQs</a></li>
                     @if(Route::has('login'))
                         @auth 
                             @if(Auth::user()->role === 'admin')
+                                <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <form action="{{route('logout')}}" method="POST" id="logout-form">
+                                    @csrf
+                                </form></li>
 
-                            @elseif(Auth::user()->role === 'seller')
-
+                            @elseif(Auth::user()->role === 'member')
+                                <li><a href="{{route('member.dashboard')}}">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <form action="{{route('logout')}}" method="POST" id="logout-form">
+                                    @csrf
+                                </form></li>
                             @else 
-                            <li><a href="{{route('dashboard')}}">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
-                            <form action="{{route('logout')}}" method="POST" id="logout-form">
-                                @csrf
-                            </form>
+                                <li><a href="{{route('dashboard')}}">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <form action="{{route('logout')}}" method="POST" id="logout-form">
+                                    @csrf
+                                </form></li>
                             @endif
                         @else 
                             <li><a href="{{route('login')}}">Login</a></li>
@@ -76,9 +88,6 @@
                         @endif
 
                     @endif
-                    <li><a href="{{route('about')}}">About Us</a></li>
-                    <li><a href="{{route('contact')}}">Contact</a></li>
-                    <li><a href="{{route('faqs')}}">FAQs</a></li>
                 </ul>
             </div>
 

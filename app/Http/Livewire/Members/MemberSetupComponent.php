@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Members;
 
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -111,12 +112,20 @@ class MemberSetupComponent extends Component
     public function secondStepSubmit(){
         $validatedData = $this->validate([
             'phone' => 'required',
-            // 'address' => 'required',
-            // 'country' => 'required',
-            // 'state' => 'required',
-            // 'city' => 'required',
+            'address' => 'required',
+            'country' => 'required',
+            'state' => 'required',
+            'city' => 'required',
             'zipcode' => 'required',
         ]);
+        $user = User::find(Auth::user()->id);
+        $user->address = $this->address;
+        $user->country = $this->country;
+        $user->country = $this->country;
+        $user->state = $this->state;
+        $user->zip = $this->zipcode;
+        $user->phone = $this->phone;
+        $user->save();
   
         $this->currentStep = 3;
     }
@@ -142,7 +151,9 @@ class MemberSetupComponent extends Component
         try{
             Stripe::setApiKey(env('STRIPE_KEY'));
             if(is_null($user->stripe_id)){
-                $stripeCustomer = $user->createAsStripeCustomer();
+                $stripeCustomer = $user->createAsStripeCustomer([
+                    'source' =>  $token
+                ]);
             }
 
             Customer::createSource(
@@ -150,18 +161,18 @@ class MemberSetupComponent extends Component
                 ['source' => $token]
             );
 
-            $user->newSubscription('test',$this->package)
+            $user->newSubscription('test','10')
             ->create($paymentMethod, [
-            'email' => $user->email,
-        ]);
+                'email' => $user->email,
+            ]);
 
         } catch (Exception $e) {
             // return back()->with('success',$e->getMessage());
         }
   
-        $this->clearForm();
+        // $this->clearForm();
   
-        $this->currentStep = 1;
+        // $this->currentStep = 1;
     }
     
 
@@ -178,8 +189,9 @@ class MemberSetupComponent extends Component
 
     
 
-    public function getStripeToken($stripeToken){
+    public function getStripeToken($stripeToken, $paymentMethod){
         $this->stripe_token = $stripeToken;
+        $paymentMethod = $paymentMethod;
         $this->submitForm();
     }
 
