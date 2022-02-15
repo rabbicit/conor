@@ -13,8 +13,13 @@ class LoginResponse implements LoginResponseContract
         $user = User::where('email', $request->email)->first();
         if($user->role == 'member'){
             session(['role' => 'member']);
-            return redirect(route('start'));
-        }elseif($user->role == 'admin'){
+            if(!empty($user->stripe_id)){
+                return redirect(route('member.dashboard'));
+            }else{
+                return redirect(route('start'));
+            }
+            
+        }elseif($user->role == 'admin'){ 
             session(['role' => 'admin']);
             return redirect(route('admin.dashboard'));
         }elseif(Session::has('orders')){

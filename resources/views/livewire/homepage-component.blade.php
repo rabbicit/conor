@@ -120,80 +120,28 @@
         </div>
     </div>
 </section>
-<!-- UPCOMMING EVENTS -->
-<section class="section upcomming-events-list inverse-color" style="display: none">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h4 class="upcomming-events-list-title">Price List</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <ul>
-                    @foreach($products as $product)
-                    <li>
-                        <div>
-                            <p class="name">
-                                <span>{{$product->name}}</span>
-                            </p>
-                            <p class="price">
-                                <span>${{$product->regular_price}}</span>
-                            </p>
-                            <p class="buy">
-                                <a href="{{$product->slug}}" class="btn rounded icon">Buy Now</a>
-                            </p>
-                        </div>
-                    </li>
-                    @endforeach
-                </ul>
-            </div>
-            <p class="view-all-events">
-                <a href="{{route('index')}}" class="btn rounded border">View all Price list</a>
-            </p>
-        </div>
-    </div>
-</section>
-
 <section class="choose-deals">
     <div class="container">
         <div class="choose-area">
             <h2>Choose Your Deal</h2>
             <p>We believe artists should have options. Stick with our 90/10 royalty deal for no upfront fee or choose Top Wave Music Select and keep 100% of the money you make.</p>
             <div class="pricing-packages">
+
+                @foreach($plans as $plan)
                 <div class="another-row">
                     <div class="single-pricing">
-                        <a href="#"></a>
+                        <input id="p1" type="radio" name="package" wire:model="package" value="{{ route('plans.show', $plan->slug) }}">
+                        <label for="p1"></label>
                         <div class="pricing-box">
-                            <h4>Single</h4>
-                            <p>1-2 tracks</p>
-                            <h1>9.99</h1>
+                            <h4>{{ $plan->name }}</h4>
+                            <p>{{ $plan->description }}</p>
+                            <h1>{{ number_format($plan->cost, 2) }}</h1>
                             <h6>USD/year</h6>
                         </div>
                     </div>
                 </div>
-                <div class="another-row">
-                    <div class="single-pricing">
-                        <a href="#"></a>
-                        <div class="pricing-box">
-                            <h4>Enterprise</h4>
-                            <p>3-6 tracks</p>
-                            <h1>19.99</h1>
-                            <h6>USD/year</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="another-row">
-                    <div class="single-pricing">
-                        <a href="#"></a>
-                        <div class="pricing-box">
-                            <h4>Premium</h4>
-                            <p>7-25 tracks</p>
-                            <h1>39.99</h1>
-                            <h6>USD/year</h6>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                
             </div>
         </div>
     </div>

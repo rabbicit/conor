@@ -2,7 +2,11 @@
     <x-jet-authentication-card>
         <x-slot name="logo">
             <a href="{{route('index')}}">
-                <img src="{{asset('images/logo.png')}}" alt="">
+                <div class="background-videos">
+                    <video id="background-video" autoplay loop muted>
+                        <source src="{{asset('videos/intro.mp4')}}" type="video/mp4">
+                      </video>
+                </div>
             </a>
         </x-slot>
 

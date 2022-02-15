@@ -655,3 +655,21 @@ header.overflow.fixed {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+.card-header {
+	margin-bottom: 30px;
+}
+.card-footer button {
+	color: #fff;
+}
+#card-element {
+	border: 1px solid #ededed;
+	width: 380px;
+	height: 44px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 12px;
+}
+#card-errors {
+	color: red;
+	font-size: 15px;
+}

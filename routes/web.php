@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\subscriptionController;
 use App\Http\Livewire\AboutPageComponent;
 use App\Http\Livewire\Admin\AdminContactComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
@@ -12,6 +14,8 @@ use App\Http\Livewire\Members\MemberProfileComponent;
 use App\Http\Livewire\Members\MemberSetupComponent;
 use App\Http\Livewire\Members\MemberTracksComponent;
 use App\Http\Livewire\Members\MemberTrackUploadsComponent;
+use App\Http\Livewire\Members\SaveTrackDetailsComponent;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,9 +39,9 @@ Route::get('/about-us', AboutPageComponent::class)->name('about');
 Route::get('/faqs', HowitWorksPageComponent::class)->name('faqs');
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboards', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified', 'authmembers'])->group(function(){
     Route::get('/member/start', MemberSetupComponent::class)->name('start');
@@ -45,10 +49,20 @@ Route::middleware(['auth:sanctum', 'verified', 'authmembers'])->group(function()
     Route::get('/member/tracks', MemberTracksComponent::class)->name('member.tracks');
     Route::get('/member/profile', MemberProfileComponent::class)->name('member.profile');
     Route::get('/member/tracks/upload', MemberTrackUploadsComponent::class)->name('member.adtrack');
+    Route::get('member/tracksave', SaveTrackDetailsComponent::class)->name('member.save');
+
+
+    Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
+    Route::get('/plan/{plan}', [PlanController::class, 'show'])->name('plans.show');
+    Route::post('/subscription', [subscriptionController::class, 'create'])->name('subscription.create');
 });
 
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function(){
     Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
     Route::get('/admin/messages', AdminContactComponent::class)->name('admin.message');
     Route::get('/admin/users', AdminMembershipComponent::class)->name('admin.users');
+
+    //Routes for create Plan
+    Route::get('create/plan', [subscriptionController::class, 'createPlan'])->name('create.plan');
+    Route::post('store/plan', [subscriptionController::class, 'storePlan'])->name('store.plan');
 });

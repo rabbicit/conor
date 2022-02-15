@@ -41,6 +41,7 @@ class JetstreamServiceProvider extends ServiceProvider
                 return $user;
             }
         });
+        
         $this->app->singleton(
             \Laravel\Fortify\Contracts\LoginResponse::class,
             \App\Http\Responses\LoginResponse::class

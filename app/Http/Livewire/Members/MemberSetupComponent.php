@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Members;
 
+use App\Models\Plan;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Stripe\Customer;
-use Stripe\Stripe;
+
 
 class MemberSetupComponent extends Component
 {
@@ -20,9 +20,6 @@ class MemberSetupComponent extends Component
     public $city;
     public $zipcode;
     public $package;
-    public $stripeToken;
-    public $paymentMethod;
-    public $stripe_token;
 
     protected $listeners = ['getStripeToken'];
     
@@ -134,47 +131,11 @@ class MemberSetupComponent extends Component
         $validatedData = $this->validate([
             'package' => 'required',
         ]);
-  
-        $this->currentStep = 4;
-        $this->dispatchBrowserEvent('stripe-update');
+
+        $palink = $this->package;
+
+        return redirect()->to($palink);
     }
-
-    public function submitForm(){
-        $validatedData = $this->validate([
-            'package' => 'required',
-        ]);
-        $user = Auth::user();
-        $token = $this->stripe_token;
-        $paymentMethod = $this->paymentMethod;
-        // var_dump($paymentMethod);
-
-        try{
-            Stripe::setApiKey(env('STRIPE_KEY'));
-            if(is_null($user->stripe_id)){
-                $stripeCustomer = $user->createAsStripeCustomer([
-                    'source' =>  $token
-                ]);
-            }
-
-            Customer::createSource(
-                $user->stripe_id,
-                ['source' => $token]
-            );
-
-            $user->newSubscription('test','10')
-            ->create($paymentMethod, [
-                'email' => $user->email,
-            ]);
-
-        } catch (Exception $e) {
-            // return back()->with('success',$e->getMessage());
-        }
-  
-        // $this->clearForm();
-  
-        // $this->currentStep = 1;
-    }
-    
 
     public function back($step){
         $this->currentStep = $step;    
@@ -187,17 +148,10 @@ class MemberSetupComponent extends Component
         $this->status = 1;
     }
 
-    
-
-    public function getStripeToken($stripeToken, $paymentMethod){
-        $this->stripe_token = $stripeToken;
-        $paymentMethod = $paymentMethod;
-        $this->submitForm();
-    }
-
     public function render()
     {
-        return view('livewire.members.member-setup-component', ['countries' => $this->getCountries(), 'states' => $this->changeCountry(), 'cities' => $this->changeState() ])->layout('layouts.base');
+        $plans = Plan::all();
+        return view('livewire.members.member-setup-component', ['countries' => $this->getCountries(), 'states' => $this->changeCountry(), 'cities' => $this->changeState(), 'plans' => $plans ])->layout('layouts.base');
     }
 }
 

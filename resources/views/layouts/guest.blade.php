@@ -15,19 +15,16 @@
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
+        @livewireStyles
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
         <div class="main_background">
-            <div class="background-videos">
-                <video id="background-video" autoplay loop muted>
-                    <source src="{{asset('videos/intro.mp4')}}" type="video/mp4">
-                  </video>
-            </div>
             <div class="font-sans text-gray-900 antialiased">
                 {{ $slot }}
             </div>
         </div>
+        @livewireScripts
     </body>
 </html>

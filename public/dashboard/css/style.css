@@ -16024,3 +16024,57 @@ dl {
   flex-grow: 1; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+.files ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-top: 20px;
+}
+.files ul li {
+  display: flex;
+  width: 300px;
+  flex-wrap: wrap;
+}
+.files ul li span {
+  width: 60px;
+  text-align: center;
+}
+.files ul li strong {
+  width: 210px;
+}
+.files ul li i {
+  width: 30px;
+  cursor: pointer;
+  text-align: center;
+}
+.forms-sample .btn.btn-danger.btn-icon-text {
+	align-items: center;
+	display: flex;
+	width: auto;
+	max-width: 150px;
+}
+
+.barname {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ededed;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+}
+.barname h4, .barname i {
+  color: #000;
+  margin: 0;
+  font-size: 25px;
+}
+.barname i{
+  cursor: pointer;
+}
+.card-areas {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	align-items: center;
+}
