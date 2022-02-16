@@ -1,10 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.plans')
 @section('content')
 <div class="container">
-    <div class="card" style="width:24rem;margin:auto;">
+    <div class="row">
+        <div class="col-md-12">
+    <div class="card" style="width:24rem;">
         <div class="card-body">
             <form action="{{route('store.plan')}}" method="post">
-                @csrf
+                @csrf 
                 <div class="form-group">
                     <label for="plan name">Plan Name:</label>
                     <input type="text" class="form-control" name="name" placeholder="Enter Plan Name">
@@ -25,5 +27,7 @@
             </form>
         </div>
     </div>
+</div>
+</div>
 </div>
 @endsection

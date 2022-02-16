@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use App\Models\Tracks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -32,6 +33,19 @@ class PlanController extends Controller
         $intent = $request->user()->createSetupIntent();
         
         return view('plans.show', compact('plan', 'intent'));
+    }
+
+    public function showPlans()
+    {           
+        $plans = Plan::all();
+        return view('plans.plans', compact('plans'));
+    }
+
+    public function downloadTracks($id){
+
+        $track = Tracks::where('id', $id)->firstOrFail();
+        $pathToFile = public_path('music/' . $track->file_name);
+        return response()->download($pathToFile);
     }
     
     public function create(Request $request, Plan $plan){

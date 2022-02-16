@@ -6,6 +6,8 @@ use App\Http\Livewire\AboutPageComponent;
 use App\Http\Livewire\Admin\AdminContactComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\Admin\AdminMembershipComponent;
+use App\Http\Livewire\Admin\AdminMusicsComponent;
+use App\Http\Livewire\Admin\AdminTransectionsComponent;
 use App\Http\Livewire\ContactPageComponent;
 use App\Http\Livewire\HomepageComponent;
 use App\Http\Livewire\HowitWorksPageComponent;
@@ -61,8 +63,12 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function(){
     Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
     Route::get('/admin/messages', AdminContactComponent::class)->name('admin.message');
     Route::get('/admin/users', AdminMembershipComponent::class)->name('admin.users');
+    Route::get('/admin/tracks', AdminMusicsComponent::class)->name('admin.tracks');
+    Route::get('/admin/transections', AdminTransectionsComponent::class)->name('admin.transections');
+    Route::get('/track/{id}/download', [PlanController::class, 'downloadTracks'])->name('track.download');
 
     //Routes for create Plan
     Route::get('create/plan', [subscriptionController::class, 'createPlan'])->name('create.plan');
+    Route::get('admin/plans', [PlanController::class, 'showPlans'])->name('show.plan');
     Route::post('store/plan', [subscriptionController::class, 'storePlan'])->name('store.plan');
 });
