@@ -14758,11 +14758,14 @@ ul.slider-twitter .flickity-page-dots .dot.is-selected {
 }
 
 .tour-info .dates-tour {
-    position: absolute;
-    bottom: -100px;
-    left: 0;
-    background-color: #161616;
-    width: 100%
+	position: absolute;
+	bottom: -100px;
+	left: 0;
+	background-color: #161616;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+    flex-wrap: wrap;
 }
 
 @media (min-width:768px) {
@@ -16335,3 +16338,25 @@ ul.slider-twitter .flickity-page-dots .dot.is-selected {
         overflow-x: hidden
     }
 }
+.home_video {
+	position: relative;
+	width: 100%;
+}
+#background-video {
+	max-width: 100%;
+}
+
+.acceptance-button input {
+    width: auto;
+    height: auto;
+    margin: 0;
+    margin-right: 5px;
+  }
+  .acceptance-button {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .acceptance-button a {
+    margin-left: 5px;
+  }

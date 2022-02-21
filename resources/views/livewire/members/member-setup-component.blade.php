@@ -50,7 +50,7 @@
                 </div>
                 <div class="step-content">
                     <div class="user-details">
-                        <input type="text" name="phone" placeholder="Phone Number" required wire:model="phone">
+                        <input type="text" name="phone" placeholder="Phone Number" wire:model="phone">
                         <div class="error-code">
                             @error('phone') <p class="text-danger">{{ $message }}</p> @enderror
                         </div>

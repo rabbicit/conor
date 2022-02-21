@@ -15457,13 +15457,14 @@ dl {
         -webkit-transition-duration: 0.45s;
         transition-duration: 0.45s;
         transition-property: color;
+        flex-direction: column;
         -webkit-transition-property: color; }
         .sidebar .nav .nav-item .nav-link i {
           color: inherit; }
           .sidebar .nav .nav-item .nav-link i.menu-icon {
-            font-size: 20px;
+            font-size: 40px;
             line-height: 1.2;
-            margin-right: 10px;
+            margin-bottom: 10px;
             color: #6a6b83; }
             .rtl .sidebar .nav .nav-item .nav-link i.menu-icon {
               margin-right: 0;
@@ -16077,4 +16078,7 @@ dl {
 	justify-content: space-between;
 	margin-bottom: 20px;
 	align-items: center;
+}
+.nav-link img {
+	max-width: 100%;
 }

@@ -19,6 +19,7 @@
         <!-- endinject --> 
         <!-- Layout styles -->
         <link rel="stylesheet" href="{{ asset('dashboard/css/style.cs')}}s" />
+        <script src="{{ asset('dashboard/vendors/js/vendor.bundle.base.js')}}"></script>
         @livewireStyles
     </head>
 <body>
@@ -26,23 +27,18 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-                <li class="nav-item nav-profile border-bottom">
+                <li class="nav-item pt-3 border-bottom">
+                    <a class="nav-link d-block" href="">
+                  <img class="sidebar-brand-logo" src="{{ asset('images/anime-logo.gif') }}" alt="" />
+                  <img class="sidebar-brand-logomini" src="{{ asset('images/anime-logo.gif') }}" alt="" />
+                </a>
+                </li>
+                <li class="nav-item border-bottom">
                     <a href="#" class="nav-link flex-column">
-                        <div class="nav-profile-image">
-                            <img src="{{Auth::user()->profile_photo_url}}" alt="profile" />
-                            <!--change to offline or busy as needed-->
-                        </div>
-                        <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
+                        <div class="nav-profile-text d-flex ms-0 flex-column">
                             <span class="font-weight-semibold mb-1 mt-2 text-center">{{Auth::user()->name}}</span>
-                            <span class="text-secondary icon-sm text-center">$3499.00</span>
                         </div>
                     </a>
-                </li>
-                <li class="nav-item pt-3">
-                    <a class="nav-link d-block" href="">
-                  <img class="sidebar-brand-logo" src="{{ asset('images/logo.png') }}" alt="" />
-                  <img class="sidebar-brand-logomini" src="{{ asset('images/logo.png') }}" alt="" />
-                </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('admin.dashboard')}}">
@@ -72,6 +68,12 @@
                     <a class="nav-link" href="{{route('show.plan')}}">
                   <i class="mdi mdi-package-variant  menu-icon"></i>
                   <span class="menu-title">Packages</span>
+                </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.calendar')}}">
+                    <i class="mdi mdi-account-multiple-outline menu-icon"></i>
+                  <span class="menu-title">calendar</span>
                 </a>
                 </li>
                 <li class="nav-item">
@@ -120,9 +122,7 @@
 
     </div>
     <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset('dashboard/vendors/js/vendor.bundle.base.js')}}"></script>
-    <!-- endinject -->
+    
     <!-- Plugin js for this page -->
     <script src="{{ asset('dashboard/vendors/jquery-bar-rating/jquery.barrating.min.js')}}"></script>
     <script src="{{ asset('dashboard/vendors/chart.js/Chart.min.js')}}"></script>

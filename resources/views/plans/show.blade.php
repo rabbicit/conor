@@ -38,6 +38,10 @@
                             </div>
                         </div>
                         <div class="card-footer">
+                            <div class="acceptance-button">
+                                <input type="checkbox" name="acceptance" required> I agree to the <a href="{{route('terms')}}">terms of services</a>
+                                <p id="terms_conditions" class="text-danger hidden">You must need to accept our terms of services.</p>
+                            </div>
                         <button
                         id="card-button"
                         class="btn btn-primary nextBtn btn-lg"
@@ -96,6 +100,7 @@
     var form = document.getElementById('payment-form');
 
     form.addEventListener('submit', function(event) {
+
         event.preventDefault();
 
         stripe

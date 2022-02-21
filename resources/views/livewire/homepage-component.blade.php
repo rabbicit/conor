@@ -28,7 +28,7 @@
             <h2 class="subtitle-text">Release your music for the world to hear</h2>
             <h2 class="subtitle-text">Keep 100% ownership of your music.</h2>
             <div class="voffset50"></div>
-            <a href="#" class="btn btn-invert">Sign Up</a>
+            <a href="{{route('register')}}" class="btn btn-invert">Sign Up</a>
         </div>
 
     </div>
@@ -46,10 +46,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
-                <div class="image-tour"></div>
-            </div>
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="tour-info">
                     <ul class="carousel-dates jcarouselDates">
                         <li class="gallery-cell" id="tour1">
@@ -59,7 +56,7 @@
                                 <p class="subtitle-tour">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum atque tempore iste.</p>
                                 <p class="buy">
-                                    <a href="#" class="btn rounded icon">Register Now</a>
+                                    <a href="{{route('register')}}" class="btn rounded icon">Register Now</a>
                                 </p>
                             </div>
                         </li>
@@ -70,7 +67,7 @@
                                 <p class="subtitle-tour">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum atque tempore iste.</p>
                                 <p class="buy">
-                                    <a href="#" class="btn rounded icon">Add Music</a>
+                                    <a href="{{route('start')}}" class="btn rounded icon">Add Music</a>
                                 </p>
                             </div>
                         </li>
@@ -81,7 +78,7 @@
                                 <p class="subtitle-tour">Top Wave releasing it to the stores</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum atque tempore iste.</p>
                                 <p class="buy">
-                                    <a href="#" class="btn rounded icon">Add Now</a>
+                                    <a href="{{route('member.tracks')}}" class="btn rounded icon">Add Now</a>
                                 </p>
                             </div>
                         </li>
@@ -92,7 +89,7 @@
                                 <p class="subtitle-tour">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum atque tempore iste.</p>
                                 <p class="buy">
-                                    <a href="#" class="btn rounded icon">See Profit</a>
+                                    <a href="{{route('member.dashboard')}}" class="btn rounded icon">See Profit</a>
                                 </p>
                             </div>
                         </li>
@@ -161,18 +158,22 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <img src="{{ asset('images/biography.jpg') }}" alt="">
+                <div class="home_video">
+                <video id="background-video" autoplay loop muted>
+                    <source src="{{asset('videos/intro.mp4')}}" type="video/mp4">
+                  </video>
+                </div>
             </div>
             <div class="col-lg-6">
                 <div class="voffset50"></div>
                 <div class="quote">
-                    <p>"If I can play one note and make you cry, then that's better than thouse fancy dancers playing twenty notes."</p>
+                    <p>"LET THE WAVES DISTRIBUTE YOUR MUSIC TO THE WORLD"</p>
                     <p class="author">Robbie Robertson</p>
                 </div>
                 <div class="description">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam iure blanditiis velit, suscipit quidem fuga, magni repudiandae atque placeat sint corporis commodi praesentium dolore necessitatibus minima nemo ipsam, perspiciatis
                         libero, quos. Obcaecati consectetur vel nostrum praesentiu.</p>
-                    <p>Obcaecati consectetur vel nostrum praesentium dolore necessitatibus minima nemo ipsam, perspiciatis libero, quos, odio quaerat asperiores repudiandae atque placeat sint corporis commodi onsectetur adipisicing elit.</p>
+                    <p>Obcaecati consectetur vel nostrum praesentium dolore necessitatibus minima nemo ipsam.</p>
                 </div>
             </div>
         </div>

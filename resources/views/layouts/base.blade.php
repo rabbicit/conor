@@ -123,11 +123,11 @@
                     <div class="col-contact">
                         <h4 class="title small">Useful Links</h4>
                         <ul class="listings">
-                            <li><a href="#">Musics</a></li>
-                            <li><a href="#">Distribute your music</a></li>
-                            <li><a href="#">How it works</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
+                            <li><a href="{{route('about')}}">About Us</a></li>
+                            <li><a href="{{route('member.dashboard')}}">Distribute your music</a></li>
+                            <li><a href="{{route('index')}}#anchor05">How it works</a></li>
+                            <li><a href="{{route('contact')}}">Contact Us</a></li>
+                        </ul> 
                     </div>
                 </div>
             </div>
