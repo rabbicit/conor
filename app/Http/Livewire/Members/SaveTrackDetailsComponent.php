@@ -17,9 +17,9 @@ class SaveTrackDetailsComponent extends Component
     public $albimage;
 
     public $albname, $newimage;
-    public $name, $songwriters, $explicit_content, $producer, $featured_artist, $instrumental, $album_id, $price, $track_id = [];
+    public $name, $songwriters, $explicit_content, $producer, $featured_artist, $instrumental, $album_id, $price, $track_id, $track_version, $contain_lyrics, $isrc_number, $track_created = [];
     public $usertracks = [];
-
+    
     public function mount(){
         $albums = Albums::where('user_id', Auth::user()->id)->first();
         $this->albname = $albums->name;
@@ -36,6 +36,10 @@ class SaveTrackDetailsComponent extends Component
             $this->instrumental[$i] = $track->instrumental;
             $this->album_id[$i] = $track->album_id;
             $this->price[$i] = $track->price;
+            $this->track_version[$i] = $track->track_version;
+            $this->contain_lyrics[$i] = $track->contain_lyrics;
+            $this->isrc_number[$i] = $track->isrc_number;
+            $this->track_created[$i] = $track->track_created;
             $i++;
         }
 
@@ -52,6 +56,10 @@ class SaveTrackDetailsComponent extends Component
         $tracks->featured_artist = $this->featured_artist[$i];
         $tracks->instrumental = $this->instrumental[$i];
         $tracks->album_id = $this->album_id[$i];
+        $tracks->track_version = $this->track_version[$i];
+        $tracks->contain_lyrics = $this->contain_lyrics[$i];
+        $tracks->isrc_number = $this->isrc_number[$i];
+        $tracks->track_created = $this->track_created[$i];
         $tracks->save();
         session()->flash('message'.$i, 'Track has been updated successfully.');
     }

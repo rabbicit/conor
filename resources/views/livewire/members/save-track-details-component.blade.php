@@ -23,20 +23,23 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="name">Track Name</label>
-                                    <input type="text" class="form-control" id="name" value="{{$track->name}}" placeholder="Name" name="name" wire:model="name.{{$loop->index}}">
+                                    <label for="name">Track title</label>
+                                    <input type="text" class="form-control" id="name" value="{{$track->name}}" placeholder="Track title " name="name" wire:model="name.{{$loop->index}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="songwriters">Songwriters</label>
+                                    <label for="songwriters">Songwriters (You can write multiple name using comma.)</label>
                                     <input type="text" class="form-control" id="songwriters" value="{{$track->songwriters}}" placeholder="Songwriters" name="songwriters" wire:model="songwriters.{{$loop->index}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="explicit_content">Explicit Content</label>
-                                    <input type="text" class="form-control" id="explicit_content" value="{{$track->explicit_content}}" placeholder="Explicit Content" name="explicit_content" wire:model="explicit_content.{{$loop->index}}">
+                                    <select class="form-control" id="explicit_content" name="explicit_content" wire:model="explicit_content.{{$loop->index}}">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -47,14 +50,51 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="featured_artist">Featured Artists</label>
-                                    <input type="text" class="form-control" id="featured_artist" value="{{$track->featured_artist}}" placeholder="Featured Artists" name="featured_artist" wire:model="featured_artist.{{$loop->index}}">
+                                    <label for="featured_artist">Extra (Featured) Artist</label>
+                                    <input type="text" class="form-control" id="featured_artist" value="{{$track->featured_artist}}" placeholder="Featured Artist" name="featured_artist" wire:model="featured_artist.{{$loop->index}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="track_version">Track version</label>
+                                    <select name="track_version" id="track_version" class="form-control" wire:model="track_version.{{$loop->index}}">
+                                        <option value="Original">Original</option>
+                                        <option value="Acoustic version">Acoustic version</option>
+                                        <option value="Demo">Demo</option>
+                                        <option value="Extended version">Extended version</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="contain_lyrics">Does this track contain any lyrics?</label>
+                                    <input type="radio" value="Yes" name="contain_lyrics" wire:model="contain_lyrics.{{$loop->index}}">Yes<br>
+                                    <input type="radio" value="No" name="contain_lyrics" wire:model="contain_lyrics.{{$loop->index}}">No
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="isrc_number">ISRC number</label>
+                                    <input type="radio" value="I don't have on ISRC number for this track. please provide me with a free once" name="isrc_number" wire:model="isrc_number.{{$loop->index}}">I don't have on ISRC number for this track. please provide me with a free once<br>
+                                    <input type="radio" value="I already have my own ISRC number I would like to use for this track" name="isrc_number" wire:model="isrc_number.{{$loop->index}}">I already have my own ISRC number I would like to use for this track
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="track_created">How was your track created?</label>
+                                    <input type="radio" value="It's a complete original" name="track_created" wire:model="track_created.{{$loop->index}}">It's a complete original<br>
+                                    <input type="radio" value="It's a cover of another artist's song" name="track_created" wire:model="track_created.{{$loop->index}}">It's a cover of another artist's song<br>
+                                    <input type="radio" value="It contains a simple by another musician or is a remix of another artist's song" name="track_created" wire:model="track_created.{{$loop->index}}">It contains a simple by another musician or is a remix of another artist's song<br>
+                                    <input type="radio" value="It contains a beat created by another musician" name="track_created" wire:model="track_created.{{$loop->index}}">It contains a beat created by another musician
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="instrumental">Instrumental</label>
-                                    <input type="text" class="form-control" id="instrumental" value="{{$track->instrumental}}" placeholder="Instrumental" name="instrumental" wire:model="instrumental.{{$loop->index}}">
+                                    <select class="form-control" id="instrumental" name="instrumental" wire:model="instrumental.{{$loop->index}}">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-4">

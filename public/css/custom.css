@@ -673,3 +673,22 @@ header.overflow.fixed {
 	color: red;
 	font-size: 15px;
 }
+.terms_details {
+	padding: 52px 0;
+}
+.navbar-default .navbar-brand {
+	color: #fff;
+}
+.navbar-default .navbar-brand h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+.terms_details p {
+	margin-bottom: 13px;
+}
+
+@media (max-width:767px){
+  .primary-title {font-size: 35px;line-height: 40px;}
+  .subtitle-text {margin: 10px 0;font-size: 18px;line-height: 20px;}
+  .another-row {width: 100%; margin-bottom: 20px;}
+}

@@ -18,7 +18,7 @@
                   @endif
                 </div>
                 <div class="flot-bar-wrapper">
-                  <div id="column-chart" class="flot-chart" style="padding: 0px;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 107px; height: 88px;" width="107" height="88"></canvas><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 107px; height: 88px;" width="107" height="88"></canvas></div>
+                 
                 </div>
               </div>
             </div>

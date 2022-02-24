@@ -14,7 +14,6 @@
                 </div>
             </div>
         </div>
-
         <div class="vcenter text-center text-overlay">
             <div class="logo-intro"><img src="{{ asset('images/logo-intro.png') }}" alt=""></div>
             <div id="owl-main-text" class="owl-carousel">
@@ -30,7 +29,6 @@
             <div class="voffset50"></div>
             <a href="{{route('register')}}" class="btn btn-invert">Sign Up</a>
         </div>
-
     </div>
 </section>
 <!-- TOUR DATES -->
@@ -168,7 +166,7 @@
                 <div class="voffset50"></div>
                 <div class="quote">
                     <p>"LET THE WAVES DISTRIBUTE YOUR MUSIC TO THE WORLD"</p>
-                    <p class="author">Robbie Robertson</p>
+                    <p class="author">The ceo of Topwave Music</p>
                 </div>
                 <div class="description">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam iure blanditiis velit, suscipit quidem fuga, magni repudiandae atque placeat sint corporis commodi praesentium dolore necessitatibus minima nemo ipsam, perspiciatis

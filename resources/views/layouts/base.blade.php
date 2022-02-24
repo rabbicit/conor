@@ -51,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand" href="{{route('index')}}"><img src="{{ asset('images/logo.png') }}" alt="logo"></a>
+                <a class="navbar-brand" href="{{route('index')}}"><h1>TOPWAVEMUSIC</h1></a>
             </div>
 
             <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-muziq">
@@ -124,7 +124,7 @@
                         <h4 class="title small">Useful Links</h4>
                         <ul class="listings">
                             <li><a href="{{route('about')}}">About Us</a></li>
-                            <li><a href="{{route('member.dashboard')}}">Distribute your music</a></li>
+                            <li><a href="{{route('register')}}">Distribute your music</a></li>
                             <li><a href="{{route('index')}}#anchor05">How it works</a></li>
                             <li><a href="{{route('contact')}}">Contact Us</a></li>
                         </ul> 
@@ -139,9 +139,7 @@
         <div class="container">
             <p class="copy">© 2022. All Rights Reserved. Designed by Ajroni Web</p>
             <ul class="menu-footer">
-                <li><a href="#">Disclaimer</a></li>
-                <li><a href="#">terms & conditions</a></li>
-                <li><a href="#">privacy policy</a></li>
+                <li><a href="{{route('terms')}}">terms & conditions</a></li>
             </ul>
         </div>
     </footer>

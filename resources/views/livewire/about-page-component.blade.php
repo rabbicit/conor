@@ -10,39 +10,43 @@
       </div>
     </div>
   </section>
-      <!-- BIOGRAPHY -->
-      <section class="section biography inverse-color" id="anchor03">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="voffset70"></div>
-                    <div class="voffset30"></div>
-                    <p class="pretitle">About Us</p>
-                    <div class="voffset20"></div>
-                    <h2 class="title">TOPWAVEMUSIC</h2>
-                    <div class="voffset110"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <img src="{{ asset('images/biography.jpg') }}" alt="">
-                </div>
-                <div class="col-lg-6">
-                    <div class="voffset50"></div>
-                    <div class="quote">
-                        <p>"If I can play one note and make you cry, then that's better than thouse fancy dancers playing twenty notes."</p>
-                        <p class="author">Robbie Robertson</p>
-                    </div>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam iure blanditiis velit, suscipit quidem fuga, magni repudiandae atque placeat sint corporis commodi praesentium dolore necessitatibus minima nemo ipsam, perspiciatis
-                            libero, quos. Obcaecati consectetur vel nostrum praesentiu.</p>
-                        <p>Obcaecati consectetur vel nostrum praesentium dolore necessitatibus minima nemo ipsam, perspiciatis libero, quos, odio quaerat asperiores repudiandae atque placeat sint corporis commodi onsectetur adipisicing elit.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="voffset150"></div>
-        </div>
-    </section>
+  <!-- BIOGRAPHY -->
+  <section class="section biography inverse-color" id="anchor03">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                  <div class="voffset70"></div>
+                  <div class="voffset30"></div>
+                  <p class="pretitle">About Us</p>
+                  <div class="voffset20"></div>
+                  <h2 class="title">TOPWAVEMUSIC</h2>
+                  <div class="voffset110"></div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-6">
+                  <div class="home_video">
+                  <video id="background-video" autoplay loop muted>
+                      <source src="{{asset('videos/intro.mp4')}}" type="video/mp4">
+                    </video>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <div class="voffset50"></div>
+                  <div class="quote">
+                      <p>"LET THE WAVES DISTRIBUTE YOUR MUSIC TO THE WORLD"</p>
+                      <p class="author">The ceo of Topwave Music</p>
+                  </div>
+                  <div class="description">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam iure blanditiis velit, suscipit quidem fuga, magni repudiandae atque placeat sint corporis commodi praesentium dolore necessitatibus minima nemo ipsam, perspiciatis
+                          libero, quos. Obcaecati consectetur vel nostrum praesentiu.</p>
+                      <p>Obcaecati consectetur vel nostrum praesentium dolore necessitatibus minima nemo ipsam.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="voffset150"></div>
+      </div>
+  </section>
   <section class="section inverse-color contact" id="anchor08">
     <div class="container">
       <div class="row">
