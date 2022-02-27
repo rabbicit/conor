@@ -16094,3 +16094,6 @@ select.form-control, .select2-container--default select.select2-selection--singl
 .form-group input[type="radio"] {
 	margin-right: 5px;
 }
+.navbar .navbar-brand-wrapper img {
+	max-width: 100%;
+}

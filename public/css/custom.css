@@ -677,7 +677,7 @@ header.overflow.fixed {
 	padding: 52px 0;
 }
 .navbar-default .navbar-brand {
-	color: #fff;
+	color: #4bbcf7;
 }
 .navbar-default .navbar-brand h1 {
   font-size: 30px;
@@ -691,4 +691,7 @@ header.overflow.fixed {
   .primary-title {font-size: 35px;line-height: 40px;}
   .subtitle-text {margin: 10px 0;font-size: 18px;line-height: 20px;}
   .another-row {width: 100%; margin-bottom: 20px;}
+}
+@media only screen and (min-width:768px) and (max-width:1000px){
+  .pricing-box h1 {  font-size: 46px;   line-height: 47px;}
 }

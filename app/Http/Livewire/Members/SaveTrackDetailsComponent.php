@@ -17,8 +17,9 @@ class SaveTrackDetailsComponent extends Component
     public $albimage;
 
     public $albname, $newimage;
-    public $name, $songwriters, $explicit_content, $producer, $featured_artist, $instrumental, $album_id, $price, $track_id, $track_version, $contain_lyrics, $isrc_number, $track_created = [];
+    public $name, $songwriters, $explicit_content, $producer, $featured_artist, $instrumental, $album_id, $price, $track_id, $track_version, $contain_lyrics, $isrc_number, $track_created, $isrc_numbers = [];
     public $usertracks = [];
+
     
     public function mount(){
         $albums = Albums::where('user_id', Auth::user()->id)->first();
@@ -39,11 +40,32 @@ class SaveTrackDetailsComponent extends Component
             $this->track_version[$i] = $track->track_version;
             $this->contain_lyrics[$i] = $track->contain_lyrics;
             $this->isrc_number[$i] = $track->isrc_number;
+            $this->isrc_numbers[$i] = $track->isrc_number;
             $this->track_created[$i] = $track->track_created;
             $i++;
         }
 
 
+    }
+
+    public function copyDetails($current){
+        $tracks = Tracks::where('user_id', Auth::user()->id)->paginate(30);
+        $i = 0;
+        foreach($tracks as $track){
+            $this->songwriters[$i] = $this->songwriters[$current];
+            $this->explicit_content[$i] = $this->explicit_content[$current];
+            $this->producer[$i] = $this->producer[$current];
+            $this->featured_artist[$i] = $this->featured_artist[$current];
+            $this->instrumental[$i] = $this->instrumental[$current];
+            $this->album_id[$i] = $this->album_id[$current];
+            $this->price[$i] = $this->price[$current];
+            $this->track_version[$i] = $this->track_version[$current];
+            $this->contain_lyrics[$i] = $this->contain_lyrics[$current];
+            $this->isrc_number[$i] = $this->isrc_number[$current];
+            $this->isrc_numbers[$i] = $this->isrc_number[$current];
+            $this->track_created[$i] = $this->track_created[$current];
+            $i++;
+        }
     }
 
     public function storeTracks($i){
@@ -59,11 +81,14 @@ class SaveTrackDetailsComponent extends Component
         $tracks->track_version = $this->track_version[$i];
         $tracks->contain_lyrics = $this->contain_lyrics[$i];
         $tracks->isrc_number = $this->isrc_number[$i];
+        if($this->isrc_numbers[$i] != ''){
+            $tracks->isrc_number = $this->isrc_numbers[$i];
+        }
+        
         $tracks->track_created = $this->track_created[$i];
         $tracks->save();
         session()->flash('message'.$i, 'Track has been updated successfully.');
     }
-
 
     public function removeFile($id){
         $tracks = Tracks::find($id);

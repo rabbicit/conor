@@ -12187,7 +12187,7 @@ footer ul.menu-footer li a {
     .primary-title {
         font-size: 75px;
         line-height: 80px;
-        letter-spacing: 20px
+        letter-spacing: 9px
     }
 }
 
@@ -14612,9 +14612,15 @@ ul.slider-twitter .flickity-page-dots .dot.is-selected {
     }
 }
 
-@media (min-width:1200px) {
+@media only screen and (max-width:1580px) and (min-width:1200px) {
     .tour-info {
-        height: 790px
+        height: 600px
+    }
+}
+
+@media (min-width:1581px) {
+    .tour-info {
+        height: 700px
     }
 }
 

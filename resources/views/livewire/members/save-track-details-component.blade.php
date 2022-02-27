@@ -75,8 +75,11 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="isrc_number">ISRC number</label>
-                                    <input type="radio" value="I don't have on ISRC number for this track. please provide me with a free once" name="isrc_number" wire:model="isrc_number.{{$loop->index}}">I don't have on ISRC number for this track. please provide me with a free once<br>
-                                    <input type="radio" value="I already have my own ISRC number I would like to use for this track" name="isrc_number" wire:model="isrc_number.{{$loop->index}}">I already have my own ISRC number I would like to use for this track
+                                    <input type="radio" value="I dont have on ISRC number for this track. please provide me with a free once" name="isrc_number" wire:model="isrc_number.{{$loop->index}}">I don't have on ISRC number for this track. please provide me with a free once<br>
+                                    <input type="radio" value="1" name="isrc_number" wire:model="isrc_number.{{$loop->index}}">I already have my own ISRC number I would like to use for this track
+                                    @if($isrc_number[$loop->index] != 'I dont have on ISRC number for this track. please provide me with a free once')
+                                        <input type="text" name="irc_new" placeholder="IRC Number" class="form-control" wire:model="isrc_numbers.{{$loop->index}}">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -118,6 +121,7 @@
                             <div class="col-md-4">
                                 <input type="hidden" name="track_id" value="{{$track->id}}" wire:model="track_id.{{$loop->index}}">
                                 <div style="height: 20px;"></div>
+                                <button wire:click="copyDetails({{$loop->index}})" type="button" class="btn btn-primary me-2"> Copy Details to other tracks </button>
                                 <button type="submit" class="btn btn-primary me-2"> Distribute </button>
                             </div>
                         </div>
