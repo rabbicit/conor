@@ -16097,3 +16097,9 @@ select.form-control, .select2-container--default select.select2-selection--singl
 .navbar .navbar-brand-wrapper img {
 	max-width: 100%;
 }
+.forms-sample {
+	width: 100%;
+}
+#package {
+	appearance: auto;
+}

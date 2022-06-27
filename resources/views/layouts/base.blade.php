@@ -61,7 +61,7 @@
                     <li><a href="{{route('contact')}}">Contact</a></li>
                     <li><a href="{{route('faqs')}}">FAQs</a></li>
                     @if(Route::has('login'))
-                        @auth 
+                        @if(Auth::check()) 
                             @if(Auth::user()->role === 'admin')
                                 <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                                 <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

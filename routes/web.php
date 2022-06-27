@@ -19,6 +19,7 @@ use App\Http\Livewire\Members\MemberDashboardComponent;
 use App\Http\Livewire\Members\MemberEditAlbumComponent;
 use App\Http\Livewire\Members\MemberProfileComponent;
 use App\Http\Livewire\Members\MemberSetupComponent;
+use App\Http\Livewire\Members\MemberSubscriptionComponent;
 use App\Http\Livewire\Members\MemberTracksComponent;
 use App\Http\Livewire\Members\MemberTrackUploadsComponent;
 use App\Http\Livewire\Members\SaveTrackDetailsComponent;
@@ -63,11 +64,14 @@ Route::middleware(['auth:sanctum', 'verified', 'authmembers'])->group(function()
     Route::get('member/album/create', MemberCreateAlbumComponent::class)->name('member.addalbum');
     Route::get('member/album/{album_id}', MemberEditAlbumComponent::class)->name('member.aledit');
     Route::get('member/calender', MemberCalendarComponent::class)->name('member.calendar');
+    Route::get('member/subscription', MemberSubscriptionComponent::class)->name('member.subscription');
 
 
     Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
     Route::get('/plan/{plan}', [PlanController::class, 'show'])->name('plans.show');
     Route::post('/subscription', [subscriptionController::class, 'create'])->name('subscription.create');
+    Route::post('/subscriptionupdate', [subscriptionController::class, 'update'])->name('subscription.update'); 
+    Route::post('/subscriptioncancel', [subscriptionController::class, 'cancel'])->name('subscription.cancel'); 
 });
 
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function(){

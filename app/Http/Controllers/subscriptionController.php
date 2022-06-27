@@ -35,6 +35,47 @@ class subscriptionController extends Controller
         return redirect()->route('member.dashboard')->with('success', 'Your plan subscribed successfully');
     }
 
+    public function update(Request $request, Plan $plan){
+
+        $user = $request->user();
+        $plan = Plan::where('stripe_plan', $request->get('package'))->first();
+        $subscriptions = $user->subscriptions()->active()->first();
+
+        $subscription = $this->stripe->subscriptions->retrieve($subscriptions->stripe_id);
+        // Change Plan
+        $charge = $this->stripe->subscriptions->update($subscriptions->stripe_id, [
+            'cancel_at_period_end' => false,
+            'proration_behavior' => 'create_prorations',
+            'billing_cycle_anchor' => 'unchanged',
+            'items' => [
+                [
+                    'id' => $subscription->items->data[0]->id,
+                    'price' => $plan->stripe_plan,
+                ],
+            ],
+        ]);
+
+        $userdata = User::find(Auth::user()->id);
+        $userdata->max_upload = $plan->max_upload;
+        $userdata->save();
+
+        return redirect()->route('member.subscription')->with('success', 'Your subscription updated successfully');
+    }
+
+    public function cancel(Request $request){
+
+        $user = $request->user();
+        $subscriptions = $user->subscriptions()->active()->first();
+        $subscription = $this->stripe->subscriptions->retrieve($subscriptions->stripe_id);
+        $subscription->active();
+
+        $userdata = User::find(Auth::user()->id);
+        $userdata->max_upload = 0;
+        $userdata->save();
+
+        return redirect()->route('member.subscription')->with('success', 'Your subscription cancelled successfully');
+    }
+
 
     public function createPlan()
     {

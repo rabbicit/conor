@@ -67,6 +67,12 @@
                 </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{route('member.subscription')}}">
+                  <i class="mdi mdi-account-multiple-outline menu-icon"></i>
+                  <span class="menu-title">Membership</span>
+                </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{route('member.profile')}}">
                   <i class="mdi mdi-account-multiple-outline menu-icon"></i>
                   <span class="menu-title">Profile</span>
