@@ -19,7 +19,9 @@
         <!-- endinject --> 
         <!-- Layout styles -->
         <link rel="stylesheet" href="{{ asset('dashboard/css/style.cs')}}s" />
+        <!-- plugins:js -->
         <script src="{{ asset('dashboard/vendors/js/vendor.bundle.base.js')}}"></script>
+        <!-- endinject -->
         @livewireStyles
     </head>
 <body>
@@ -29,54 +31,57 @@
             <div class="logo_area">
                 <a class="nav-link d-block" href="">
                     <img class="sidebar-brand-logo" src="{{ asset('images/anime-logo.gif') }}" alt="" />
-                    <img class="sidebar-brand-logomini" src="{{ asset('images/anime-logo.gif') }}" alt="" />
                 </a>
             </div>
             <div class="menu_areas">
                 <ul class="nav">
-                    <li class="nav-item border-bottom">
+                    {{-- <li class="nav-item border-bottom">
                         <a href="#" class="nav-link flex-column">
                             <div class="nav-profile-text d-flex ms-0 flex-column">
                                 <span class="font-weight-semibold mb-1 mt-2 text-center">{{Auth::user()->name}}</span>
                             </div>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.dashboard')}}">
+                        <a class="nav-link" href="{{route('member.dashboard')}}">
                       <span class="menu-title">Dashboard</span>
                     </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.tracks')}}">
+                        <a class="nav-link" href="{{route('member.albums')}}">
+                      <span class="menu-title">Album</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('member.tracks')}}">
                       <span class="menu-title">Tracks</span>
                     </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.users')}}">
-                      <span class="menu-title">Users</span>
+                        <a class="nav-link" href="{{route('member.calendar')}}">
+                      <span class="menu-title">Calendar</span>
                     </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.transections')}}">
-                      <span class="menu-title">Subscriptions</span>
-                    </a>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">Money & Report</a>
+                        <ul>
+                            <li class="nav-item"><a class="nav-link" href="{{route('member.subscription')}}"><span class="menu-title">Membership</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('member.history')}}"><span class="menu-title">Balance History</span></a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('show.plan')}}">
-                      <span class="menu-title">Packages</span>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.calendar')}}">
-                      <span class="menu-title">calendar</span>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.message')}}">
-                      <span class="menu-title">Messages</span>
+                        <a class="nav-link" href="{{route('member.profile')}}">
+                      <span class="menu-title">Profile</span>
                     </a>
                     </li>
                 </ul>
+            </div>
+            <div class="right-areas">
+                <a class="nav-link" href="{{url('/')}}">Home</a>
+                <a class="nav-link"  href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                <form action="{{route('logout')}}" method="POST" id="logout-form">
+                    @csrf
+                </form>
             </div>
         </div>
     </div>
@@ -84,6 +89,57 @@
     <div class="container-scroller">
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item pt-3 border-bottom">
+                    <a class="nav-link d-block" href="">
+                  <img class="sidebar-brand-logo" src="{{ asset('images/anime-logo.gif') }}" alt="" />
+                  <img class="sidebar-brand-logomini" src="{{ asset('images/anime-logo.gif') }}" alt="" />
+                </a>
+                </li>
+                <li class="nav-item border-bottom">
+                    <a href="#" class="nav-link flex-column">
+                        <div class="nav-profile-text d-flex ms-0 flex-column">
+                            <span class="font-weight-semibold mb-1 mt-2 text-center">{{Auth::user()->name}}</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('member.dashboard')}}">
+                  <i class="mdi mdi-compass-outline menu-icon"></i>
+                  <span class="menu-title">Dashboard</span>
+                </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('member.albums')}}">
+                        <i class="mdi mdi-image-album menu-icon"></i>
+                  <span class="menu-title">Album</span>
+                </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('member.tracks')}}">
+                        <i class="mdi mdi-library-music  menu-icon"></i>
+                  <span class="menu-title">Tracks</span>
+                </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('member.calendar')}}">
+                        <i class="mdi mdi-calendar  menu-icon"></i>
+                  <span class="menu-title">Calendar</span>
+                </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('member.subscription')}}">
+                  <i class="mdi mdi-account-multiple-outline menu-icon"></i>
+                  <span class="menu-title">Membership</span>
+                </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('member.profile')}}">
+                  <i class="mdi mdi-account-multiple-outline menu-icon"></i>
+                  <span class="menu-title">Profile</span>
+                </a>
+                </li>
+            </ul>
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
@@ -112,7 +168,7 @@
 
             <div class="main-panel">
                 <div class="content-wrapper pb-0">
-                    {{$slot}}
+                    @yield('content')
                 </div>
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -125,7 +181,6 @@
 
     </div>
     <!-- container-scroller -->
-    
     <!-- Plugin js for this page -->
     <script src="{{ asset('dashboard/vendors/jquery-bar-rating/jquery.barrating.min.js')}}"></script>
     <script src="{{ asset('dashboard/vendors/chart.js/Chart.min.js')}}"></script>

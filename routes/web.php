@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\subscriptionController;
+use App\Http\Controllers\SubscriptionTransectionController;
 use App\Http\Livewire\AboutPageComponent;
 use App\Http\Livewire\Admin\AdminCalendarComponent;
 use App\Http\Livewire\Admin\AdminContactComponent;
@@ -65,6 +66,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authmembers'])->group(function()
     Route::get('member/album/{album_id}', MemberEditAlbumComponent::class)->name('member.aledit');
     Route::get('member/calender', MemberCalendarComponent::class)->name('member.calendar');
     Route::get('member/subscription', MemberSubscriptionComponent::class)->name('member.subscription');
+    Route::get('/member/history',[ SubscriptionTransectionController::class, 'list_transections'])->name('member.history');
 
 
     Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');

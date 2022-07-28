@@ -25,6 +25,67 @@
         @livewireStyles
     </head>
 <body>
+
+    <div class="header_area_main">
+        <div class="main_header">
+            <div class="logo_area">
+                <a class="nav-link d-block" href="">
+                    <img class="sidebar-brand-logo" src="{{ asset('images/anime-logo.gif') }}" alt="" />
+                </a>
+            </div>
+            <div class="menu_areas">
+                <ul class="nav">
+                    {{-- <li class="nav-item border-bottom">
+                        <a href="#" class="nav-link flex-column">
+                            <div class="nav-profile-text d-flex ms-0 flex-column">
+                                <span class="font-weight-semibold mb-1 mt-2 text-center">{{Auth::user()->name}}</span>
+                            </div>
+                        </a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('member.dashboard')}}">
+                      <span class="menu-title">Dashboard</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('member.albums')}}">
+                      <span class="menu-title">Album</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('member.tracks')}}">
+                      <span class="menu-title">Tracks</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('member.calendar')}}">
+                      <span class="menu-title">Calendar</span>
+                    </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">Money & Report</a>
+                        <ul>
+                            <li class="nav-item"><a class="nav-link" href="{{route('member.subscription')}}"><span class="menu-title">Membership</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('member.history')}}"><span class="menu-title">Balance History</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('member.profile')}}">
+                      <span class="menu-title">Profile</span>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right-areas">
+                <a class="nav-link" href="{{url('/')}}">Home</a>
+                <a class="nav-link"  href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                <form action="{{route('logout')}}" method="POST" id="logout-form">
+                    @csrf
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="container-scroller">
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">

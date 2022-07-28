@@ -16103,3 +16103,60 @@ select.form-control, .select2-container--default select.select2-selection--singl
 #package {
 	appearance: auto;
 }
+.logo_area a img {
+	max-width: 100px;
+}
+.main_header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #000;
+	padding: 0 50px;
+}
+.right-areas {
+	display: flex;
+	align-items: center;
+
+}
+.right-areas a {
+	color: #fff;
+	margin-left: 10px;
+}
+.menu_areas > ul > li > a {
+	color: #fff;
+}
+.dropdown > ul {
+	position: absolute;
+	top: 100%;
+	background-color: #fff;
+	box-shadow: 0 0 6px rgba(0,0,0,.2);
+	list-style: none;
+	z-index: 2;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	width: 150px;
+	padding: 0;
+	max-height: 0;
+	overflow: hidden;
+	transition: all .5s ease 0s;
+}
+.dropdown > a::after {
+	content: '';
+	width: 10px;
+	height: 10px;
+	border-top: 5px solid #fff;
+	position: absolute;
+	top: 48%;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	right: -3px;
+}
+.dropdown:hover > ul {
+	max-height: 300px;
+}
+@media (min-width:768px){
+  #sidebar{display:none;}
+  .navbar.default-layout-navbar.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row {
+    display: none !important;
+  }
+}

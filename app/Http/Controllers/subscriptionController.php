@@ -107,6 +107,6 @@ class subscriptionController extends Controller
         Plan::create($data);
 
         echo 'plan has been created';
-    }
+    } 
 
 }
