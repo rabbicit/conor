@@ -65,8 +65,9 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link">Money & Report</a>
                         <ul>
+                            <li class="nav-item"><a class="nav-link" href="{{route('member.balance')}}"><span class="menu-title">Balance History</span></a></li>
                             <li class="nav-item"><a class="nav-link" href="{{route('member.subscription')}}"><span class="menu-title">Membership</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{route('member.history')}}"><span class="menu-title">Balance History</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('member.history')}}"><span class="menu-title">Membership History</span></a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

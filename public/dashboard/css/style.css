@@ -16154,6 +16154,38 @@ select.form-control, .select2-container--default select.select2-selection--singl
 .dropdown:hover > ul {
 	max-height: 300px;
 }
+
+.table-responsive button svg {
+  width: 20px;
+  height: 20px;
+}
+.table-responsive svg {
+	height: 20px;
+	width: 20px;
+}
+.table-responsive span.relative.inline-flex {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none !important;
+}
+.table-responsive .relative.inline-flex button {
+	height: 38px;
+	box-shadow: inherit;
+}
+.table-responsive .relative.inline-flex > span {
+  margin: 0 5px;
+}
+nav[aria-label="Pagination Navigation"] .flex.justify-between.flex-1.sm\:hidden {
+	display: none !important;
+}
+.table-responsive .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between {
+	text-align: center;
+}
+.table-responsive .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:first-child {
+	display: none;
+}
 @media (min-width:768px){
   #sidebar{display:none;}
   .navbar.default-layout-navbar.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row {

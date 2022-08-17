@@ -20,6 +20,8 @@ class CreatePlansTable extends Migration
             $table->string('stripe_plan');
             $table->float('cost');
             $table->text('description')->nullable();
+            $table->text('note')->nullable();
+            $table->text('extra')->nullable();
             $table->timestamps();
         });
     }

@@ -6,9 +6,12 @@ use App\Http\Controllers\SubscriptionTransectionController;
 use App\Http\Livewire\AboutPageComponent;
 use App\Http\Livewire\Admin\AdminCalendarComponent;
 use App\Http\Livewire\Admin\AdminContactComponent;
+use App\Http\Livewire\Admin\AdminCreatePaymentComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
+use App\Http\Livewire\Admin\AdminEditPaymentComponent;
 use App\Http\Livewire\Admin\AdminMembershipComponent;
 use App\Http\Livewire\Admin\AdminMusicsComponent;
+use App\Http\Livewire\Admin\AdminPaymentComponent;
 use App\Http\Livewire\Admin\AdminTransectionsComponent;
 use App\Http\Livewire\ContactPageComponent;
 use App\Http\Livewire\HomepageComponent;
@@ -18,6 +21,7 @@ use App\Http\Livewire\Members\MemberCalendarComponent;
 use App\Http\Livewire\Members\MemberCreateAlbumComponent;
 use App\Http\Livewire\Members\MemberDashboardComponent;
 use App\Http\Livewire\Members\MemberEditAlbumComponent;
+use App\Http\Livewire\Members\MemberPaymentComponent;
 use App\Http\Livewire\Members\MemberProfileComponent;
 use App\Http\Livewire\Members\MemberSetupComponent;
 use App\Http\Livewire\Members\MemberSubscriptionComponent;
@@ -67,6 +71,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authmembers'])->group(function()
     Route::get('member/calender', MemberCalendarComponent::class)->name('member.calendar');
     Route::get('member/subscription', MemberSubscriptionComponent::class)->name('member.subscription');
     Route::get('/member/history',[ SubscriptionTransectionController::class, 'list_transections'])->name('member.history');
+    Route::get('/member/balance', MemberPaymentComponent::class )->name('member.balance');
 
 
     Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
@@ -78,6 +83,9 @@ Route::middleware(['auth:sanctum', 'verified', 'authmembers'])->group(function()
 
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function(){
     Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
+    Route::get('/admin/payments', AdminPaymentComponent::class)->name('admin.payments');
+    Route::get('/payments/add', AdminCreatePaymentComponent::class)->name('admin.createpayments');
+    Route::get('/admin/payments/edit/{payment_id}', AdminEditPaymentComponent::class)->name('admin.editpayment');
     Route::get('/admin/messages', AdminContactComponent::class)->name('admin.message');
     Route::get('/admin/users', AdminMembershipComponent::class)->name('admin.users');
     Route::get('/admin/tracks', AdminMusicsComponent::class)->name('admin.tracks');

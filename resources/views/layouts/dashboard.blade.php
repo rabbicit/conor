@@ -29,18 +29,10 @@
             <div class="logo_area">
                 <a class="nav-link d-block" href="">
                     <img class="sidebar-brand-logo" src="{{ asset('images/anime-logo.gif') }}" alt="" />
-                    <img class="sidebar-brand-logomini" src="{{ asset('images/anime-logo.gif') }}" alt="" />
                 </a>
             </div>
             <div class="menu_areas">
                 <ul class="nav">
-                    <li class="nav-item border-bottom">
-                        <a href="#" class="nav-link flex-column">
-                            <div class="nav-profile-text d-flex ms-0 flex-column">
-                                <span class="font-weight-semibold mb-1 mt-2 text-center">{{Auth::user()->name}}</span>
-                            </div>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.dashboard')}}">
                       <span class="menu-title">Dashboard</span>
@@ -61,6 +53,14 @@
                       <span class="menu-title">Subscriptions</span>
                     </a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="{{route('admin.payments')}}">
+                      <span class="menu-title">Payments</span>
+                    </a>
+                        <ul>
+                            <li class="nav-item"><a  class="nav-link"  href="{{route('admin.createpayments')}}">Add New</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('show.plan')}}">
                       <span class="menu-title">Packages</span>
@@ -76,6 +76,11 @@
                       <span class="menu-title">Messages</span>
                     </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form action="{{route('logout')}}" method="POST" id="logout-form">
+                            @csrf
+                        </form></li>
                 </ul>
             </div>
         </div>
