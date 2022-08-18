@@ -24,80 +24,87 @@ class MemberSetupComponent extends Component
     protected $listeners = ['getStripeToken'];
     
     public function getCountries(){
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://geodata.solutions/api/api.php?type=getCountries',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-        ));
+        // $curl = curl_init();
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'https://geodata.solutions/api/api.php?type=getCountries',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        // ));
 
-        $response = curl_exec($curl);
+        // $response = curl_exec($curl);
 
-        curl_close($curl);
+        // curl_close($curl);
+        
+        // $jsonitem = file_get_contents("https://topwavemusic.com/location/countries.json");
+        
+        // $objitems = json_decode($jsonitem);
 
-        $output = json_decode($response, true);
+        // $output = json_decode($response, true);
 
-        return $output['result'];
+        // return $output['result'];
+        return array();
     }
 
     public function changeCountry(){
-        $country = $this->country;
-        $curl = curl_init();
+        // $country = $this->country;
+        // $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://geodata.solutions/api/api.php?type=getStates&countryId='.$country,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-        ));
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'https://geodata.solutions/api/api.php?type=getStates&countryId='.$country,
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        // ));
         
-        $response = curl_exec($curl);
+        // $response = curl_exec($curl);
         
-        curl_close($curl);
-        $output = json_decode($response, true);
+        // curl_close($curl);
+        // $output = json_decode($response, true);
 
-        if(!empty($output['result'])){
-            return $output['result'];
-        }else{
-            return array();
-        }
+        // if(!empty($output['result'])){
+        //     return $output['result'];
+        // }else{
+        //     return array();
+        // }
+        return array();
     }
 
     public function changeState(){
-        $country = $this->country;
-        $state = $this->state;
-        $curl = curl_init();
+        // $country = $this->country;
+        // $state = $this->state;
+        // $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://geodata.solutions/api/api.php?type=getStates&countryId='.$country.'&stateId='.$state,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-        ));
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'https://geodata.solutions/api/api.php?type=getStates&countryId='.$country.'&stateId='.$state,
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        // ));
         
-        $response = curl_exec($curl);
+        // $response = curl_exec($curl);
         
-        curl_close($curl);
-        $output = json_decode($response, true);
+        // curl_close($curl);
+        // $output = json_decode($response, true);
 
-        if(!empty($output['result'])){
-            return $output['result'];
-        }else{
-            return array();
-        }
+        // if(!empty($output['result'])){
+        //     return $output['result'];
+        // }else{
+        //     return array();
+        // }
+        return array();
     }
 
     public function firstStepSubmit(){
